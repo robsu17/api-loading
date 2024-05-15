@@ -26,6 +26,22 @@ export class PostsService {
     })
   }
 
+  async listPaginate(page: number, userId: string) {
+    const itemsPerPage = 10
+
+    if (page <= 0) {
+      return []
+    }
+
+    return await this.prismaService.post.findMany({
+      skip: (page - 1) * itemsPerPage,
+      take: itemsPerPage,
+      where: {
+        userId,
+      },
+    })
+  }
+
   async findPostById(postId: string, userId: string) {
     const post = await this.prismaService.post.findFirst({
       where: {

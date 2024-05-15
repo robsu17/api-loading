@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
 } from '@nestjs/common'
 import { Request } from 'express'
@@ -19,10 +20,20 @@ export class PostsController {
   constructor(private postsService: PostsService) {}
 
   @Get('/list')
-  async list(@Req() req: Request) {
-    const posts = await this.postsService.list(req.user.id)
+  async list(@Req() req: Request, @Query() param: { page: number }) {
+    const page = param.page
+    const userId = req.user.id
+    let posts
+
+    if (!page) {
+      posts = await this.postsService.list(userId)
+    } else {
+      posts = await this.postsService.listPaginate(page, userId)
+    }
+
     return {
-      count: posts.length,
+      items: posts.length,
+      page,
       posts,
     }
   }
