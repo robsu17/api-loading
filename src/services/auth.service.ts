@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt'
 import { EmailNotRegisteredException } from 'src/http/errors/email-not-registered'
 import { EmailOrPasswordIsWrongException } from 'src/http/errors/email-or-password-is-wrong'
 import { EmailAlreadyExistException } from 'src/http/errors/email-already-exit'
+import { env } from 'src/env'
 
 @Injectable()
 export class AuthService {
@@ -41,7 +42,7 @@ export class AuthService {
 
     return {
       access_token: await this.jwtService.signAsync(payload, {
-        secret: 'secret',
+        secret: env.JWT_KEY,
         expiresIn: '1hr',
       }),
     }

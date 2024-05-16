@@ -7,8 +7,23 @@ import { AuthService } from './services/auth.service'
 import { PostsController } from './http/posts.controller'
 import { PostsService } from './services/posts.service'
 import { AuthMiddleware } from './http/middleware/auth.middleware'
+import { ConfigModule } from '@nestjs/config'
+import { envSchema } from './env'
 
 @Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validate: (env) => {
+        const envValidation = envSchema.safeParse(env)
+        if (!envValidation.success) {
+          console.error('Error env validation')
+          throw new Error('Error env validation')
+        }
+        return envValidation
+      },
+    }),
+  ],
   controllers: [AuthController, PostsController],
   providers: [
     PrismaService,
