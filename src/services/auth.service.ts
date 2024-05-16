@@ -7,9 +7,10 @@ import { EmailNotRegisteredException } from 'src/http/errors/email-not-registere
 import { EmailOrPasswordIsWrongException } from 'src/http/errors/email-or-password-is-wrong'
 import { EmailAlreadyExistException } from 'src/http/errors/email-already-exit'
 import { env } from 'src/env'
+import { IAuthService } from 'src/interfaces/IAuthService'
 
 @Injectable()
-export class AuthService {
+export class AuthService implements IAuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,

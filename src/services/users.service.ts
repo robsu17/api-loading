@@ -3,9 +3,10 @@ import { CreateUserDto } from 'src/Dto/auth/CreateUserDto'
 import { PrismaService } from 'src/prisma/prisma.service'
 
 import * as bcrypt from 'bcrypt'
+import { IUserService } from 'src/interfaces/IUserService'
 
 @Injectable()
-export class UsersService {
+export class UsersService implements IUserService {
   constructor(private prisma: PrismaService) {}
 
   async findUserByEmail(email: string) {
