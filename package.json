@@ -2,6 +2,7 @@
   "name": "api-loading",
   "version": "0.0.1",
   "description": "",
+  "type": "module",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -13,7 +14,8 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "vitest"
+    "test": "vitest --coverage",
+    "coverage": "vitest run --coverage --https"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -44,6 +46,7 @@
     "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "@vitest/coverage-v8": "^1.6.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.0",

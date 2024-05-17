@@ -9,6 +9,8 @@ import { PostsService } from './services/posts.service'
 import { AuthMiddleware } from './http/middleware/auth.middleware'
 import { ConfigModule } from '@nestjs/config'
 import { envSchema } from './env'
+import { InMemoryAuthService } from './services/in-memory/in-memory-auth'
+import { InMemoryUsersService } from './services/in-memory/in-memory-users'
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { envSchema } from './env'
     UsersService,
     AuthService,
     PostsService,
+    InMemoryAuthService,
+    InMemoryUsersService,
   ],
 })
 export class AppModule implements NestModule {
