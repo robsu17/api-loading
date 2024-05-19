@@ -1,15 +1,22 @@
+import { ApiProperty } from '@nestjs/swagger'
 import { IsNotEmpty, IsString } from 'class-validator'
+import { Prisma } from '@prisma/client'
 
-export class CreatePostDto {
-  @IsString()
+export class CreatePostDto implements Prisma.PostCreateInput {
   @IsNotEmpty()
+  @IsString()
+  @ApiProperty({ example: 'post title' })
   title: string = ''
 
-  @IsString()
   @IsNotEmpty()
+  @IsString()
+  @ApiProperty({ example: 'post description' })
   description: string = ''
 
-  @IsString()
   @IsNotEmpty()
+  @IsString()
+  @ApiProperty({ example: 'post type' })
   type: string = ''
+
+  user: Prisma.UserCreateNestedOneWithoutPostInput = {}
 }

@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  mysql:
+  db:
     image: 'bitnami/mysql:latest'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
