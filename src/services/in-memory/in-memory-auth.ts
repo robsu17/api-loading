@@ -4,9 +4,7 @@ import { EmailAlreadyExistException } from '../../http/errors/email-already-exit
 import { EmailNotRegisteredException } from '../..//http/errors/email-not-registered'
 import { EmailOrPasswordIsWrongException } from '../..//http/errors/email-or-password-is-wrong'
 import { JwtService } from '@nestjs/jwt'
-import { Injectable } from '@nestjs/common'
 
-@Injectable()
 export class InMemoryAuthService implements IAuthService {
   constructor(
     private usersService: InMemoryUsersService,

@@ -6,15 +6,6 @@ import {
 import { JwtService } from '@nestjs/jwt'
 import { Request, Response, NextFunction } from 'express'
 
-declare module 'Express' {
-  interface Request {
-    user: {
-      id: string
-      email: string
-    }
-  }
-}
-
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
   constructor(private jwtService: JwtService) {}
